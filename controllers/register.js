@@ -11,6 +11,9 @@ const handleRegister = (req, res, db, bcrypt) => {
 		})
 		.into('login')
 		.returning('email')
+		.catch(err => {
+			res.json("oh here was the error");
+		})
 		.then(loginEmail => {
 			return trx('users')
 				.returning('*')
